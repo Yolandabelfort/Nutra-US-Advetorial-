@@ -318,7 +318,7 @@
                 <span class="tag weight-loss">WEIGHT LOSS</span>
             </div>
 
-           <div class="video-container" style="text-align: center;">
+          <div class="video-container" style="text-align: center;">
   <div style="position: relative; display: inline-block; width: 100%; max-width: 800px;">
     <video
       id="mainVideo"
@@ -326,12 +326,13 @@
       style="border-radius: 10px; object-fit: cover; aspect-ratio: 16/9;"
       preload="none"
       playsinline
-      poster="Untitled_design-15.png"
+      poster="Untitled_design-15.png" <!-- replace with your actual thumbnail filename -->
     >
       <source src="eedae366-b1a5-4813-99a1-3aa87b67a266%20(online-video-cutter.com)%20(2).mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
 
+    <!-- Red Play Button -->
     <div id="playButton"
       style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
              width: 80px; height: 80px; background: #ff0000; border-radius: 50%; cursor: pointer;
@@ -351,25 +352,35 @@
 
   let isPlaying = false;
 
-  playButton.addEventListener('click', () => {
-    if (!isPlaying) {
+  function togglePlayPause() {
+    if (video.paused || video.ended) {
       video.play();
       playButton.style.display = 'none';
       isPlaying = true;
     } else {
       video.pause();
+      playButton.style.display = 'flex';
+      isPlaying = false;
     }
-  });
+  }
 
+  // Red play button click toggles video
+  playButton.addEventListener('click', togglePlayPause);
+
+  // Clicking video toggles pause/play
+  video.addEventListener('click', togglePlayPause);
+
+  // Show red play button again when video is paused
   video.addEventListener('pause', () => {
     playButton.style.display = 'flex';
     isPlaying = false;
   });
 
-  // Disable built-in controls and right-click menu
+  // Hide controls and disable right-click menu
   video.controls = false;
   video.addEventListener("contextmenu", e => e.preventDefault());
 </script>
+
 
 
 
