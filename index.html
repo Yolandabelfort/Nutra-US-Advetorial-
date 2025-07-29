@@ -3011,13 +3011,20 @@ Not an official Manus doc nor endorsed by Manus. Content may contain inaccuracie
   			}
 			})
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
+  function hideManusBadge() {
     const elements = document.querySelectorAll("body *");
     elements.forEach(function (el) {
-      if (el.textContent.includes("Made with Manus")) {
+      if (el.textContent && el.textContent.includes("Made with Manus")) {
         el.style.display = "none";
       }
     });
-  });
+  }
+
+  // Run immediately after DOM loads
+  document.addEventListener("DOMContentLoaded", hideManusBadge);
+
+  // Watch for dynamically injected content (like popups)
+  const observer = new MutationObserver(hideManusBadge);
+  observer.observe(document.body, { childList: true, subtree: true });
 </script>
-</body>
+
