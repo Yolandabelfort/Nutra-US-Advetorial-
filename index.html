@@ -319,16 +319,36 @@
             </div>
 
             <div class="video-container">
-                <div style="position: relative; display: inline-block; width: 100%; max-width: 800px;">
-                    <video id="mainVideo" width="100%" style="border-radius: 10px; object-fit: cover; aspect-ratio: 16/9;">
-                        <source src="video.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <div id="playButton" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px; background: #ff0000; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);">
-                        <div style="width: 0; height: 0; border-left: 25px solid white; border-top: 15px solid transparent; border-bottom: 15px solid transparent; margin-left: 5px;"></div>
-                    </div>
-                </div>
-            </div>
+  <div style="position: relative; display: inline-block; width: 100%; max-width: 800px;">
+    <video id="mainVideo" width="100%" style="border-radius: 10px; object-fit: cover; aspect-ratio: 16/9;">
+      <source src="eedae366-b1a5-4813-99a1-3aa87b67a266%20(online-video-cutter.com)%20(2).mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+    <div id="playButton" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 80px; height: 80px; background: #ff0000; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3); transition: opacity 0.3s;">
+      <div style="width: 0; height: 0; border-left: 25px solid white; border-top: 15px solid transparent; border-bottom: 15px solid transparent; margin-left: 5px;"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const video = document.getElementById("mainVideo");
+  const playButton = document.getElementById("playButton");
+
+  playButton.addEventListener("click", function () {
+    video.play();
+    playButton.style.opacity = "0";
+  });
+
+  video.addEventListener("pause", function () {
+    playButton.style.opacity = "1";
+  });
+
+  video.addEventListener("play", function () {
+    playButton.style.opacity = "0";
+  });
+</script>
+
 
             <div class="share-section">
                 <strong>SHARE</strong>
