@@ -318,9 +318,16 @@
                 <span class="tag weight-loss">WEIGHT LOSS</span>
             </div>
 
-            <div class="video-container">
+           <div class="video-container" style="text-align: center;">
   <div style="position: relative; display: inline-block; width: 100%; max-width: 800px;">
-    <video id="mainVideo" width="100%" style="border-radius: 10px; object-fit: cover; aspect-ratio: 16/9;" playsinline>
+    <video
+      id="mainVideo"
+      width="100%"
+      style="border-radius: 10px; object-fit: cover; aspect-ratio: 16/9;"
+      preload="none"
+      playsinline
+      poster="Untitled_design-15.png" <!-- 👈 your thumbnail filename here -->
+    >
       <source src="eedae366-b1a5-4813-99a1-3aa87b67a266%20(online-video-cutter.com)%20(2).mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
@@ -329,7 +336,7 @@
       style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
              width: 80px; height: 80px; background: #ff0000; border-radius: 50%; cursor: pointer;
              display: flex; align-items: center; justify-content: center;
-             box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3); transition: opacity 0.3s;">
+             box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3); transition: opacity 0.3s; z-index: 2;">
       <div style="width: 0; height: 0; border-left: 25px solid white;
                   border-top: 15px solid transparent; border-bottom: 15px solid transparent;
                   margin-left: 5px;">
@@ -340,49 +347,30 @@
 
 <script>
   const video = document.getElementById('mainVideo');
-  const playBtn = document.getElementById('playButton');
+  const playButton = document.getElementById('playButton');
 
-  video.removeAttribute("controls");
-  video.setAttribute("preload", "none");
+  let isPlaying = false;
 
-  playBtn.addEventListener("click", () => {
-    if (video.paused) {
+  playButton.addEventListener('click', () => {
+    if (!isPlaying) {
       video.play();
-      playBtn.style.display = "none";
+      playButton.style.display = 'none';
+      isPlaying = true;
     } else {
       video.pause();
-      playBtn.style.display = "flex";
     }
   });
 
-  video.addEventListener("pause", () => {
-    playBtn.style.display = "flex";
+  video.addEventListener('pause', () => {
+    playButton.style.display = 'flex';
+    isPlaying = false;
   });
 
+  // Disable built-in controls and right-click menu
+  video.controls = false;
   video.addEventListener("contextmenu", e => e.preventDefault());
-  video.addEventListener("volumechange", e => video.volume = 1);
-  video.addEventListener("fullscreenchange", e => document.exitFullscreen());
 </script>
 
-
-
-<script>
-  const video = document.getElementById("mainVideo");
-  const playButton = document.getElementById("playButton");
-
-  playButton.addEventListener("click", function () {
-    video.play();
-    playButton.style.opacity = "0";
-  });
-
-  video.addEventListener("pause", function () {
-    playButton.style.opacity = "1";
-  });
-
-  video.addEventListener("play", function () {
-    playButton.style.opacity = "0";
-  });
-</script>
 
 
             <div class="share-section">
