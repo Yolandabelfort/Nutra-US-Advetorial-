@@ -3011,29 +3011,24 @@ Not an official Manus doc nor endorsed by Manus. Content may contain inaccuracie
   			}
 			})
 <script>
-  function removeManusBadge() {
-    const suspects = document.querySelectorAll("body *");
+  function nukeManusDialog() {
+    const dialogs = document.querySelectorAll("lit-dialog");
 
-    suspects.forEach(function (el) {
-      const text = el.textContent?.trim() || "";
-      const className = el.className?.toString() || "";
+    dialogs.forEach(dialog => {
+      const text = dialog.getAttribute("title") || dialog.innerText || "";
 
-      if (
-        text.includes("Made with Manus") ||
-        className.includes("manus") ||
-        className.includes("badge")
-      ) {
-        el.remove();
-        console.log("Removed Manus element:", el);
+      if (text.includes("Made with Manus")) {
+        dialog.remove();
+        console.log("✅ Removed <lit-dialog> with Manus badge");
       }
     });
   }
 
-  // Run on DOM load
-  document.addEventListener("DOMContentLoaded", removeManusBadge);
+  // Run on page load
+  document.addEventListener("DOMContentLoaded", nukeManusDialog);
 
-  // Also observe future changes
-  const observer = new MutationObserver(removeManusBadge);
+  // Watch for dynamically added dialogs
+  const observer = new MutationObserver(nukeManusDialog);
   observer.observe(document.body, { childList: true, subtree: true });
 </script>
 
