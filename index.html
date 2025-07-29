@@ -640,12 +640,34 @@
 
   <p>Take back your power. Take back your health. Take back your life.</p>
 
-  <a href="https://nordicsafewallets.com/sverige/checkout-1739990161874477-1740074111917991" 
-   class="cta-button" 
-   target="_blank" 
-   rel="noopener noreferrer">
-  ORDER YOUR 3 MONTH BUNDLE OF GLPZEMPIC NOW - BEFORE IT'S TOO LATE
-</a>
+ <a href="#" id="ctaButton" class="cta-button">ORDER YOUR 3 MONTH BUNDLE OF GLPZEMPIC NOW - BEFORE IT'S TOO LATE</a>
+<p id="statusMessage" style="margin-top: 15px; font-weight: bold;"></p>
+
+<script>
+  document.getElementById("ctaButton").addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const button = e.target;
+    const message = document.getElementById("statusMessage");
+
+    button.disabled = true;
+    button.style.opacity = "0.6";
+    message.textContent = "Checking inventory...";
+
+    setTimeout(() => {
+      message.textContent = "Applying your discount...";
+    }, 2000);
+
+    setTimeout(() => {
+      message.textContent = "Great news! You qualify for the 3-month bundle.";
+    }, 4000);
+
+    setTimeout(() => {
+      window.location.href = "https://nordicsafewallets.com/sverige/checkout-1739990161874477-1740074111917991";
+    }, 6000);
+  });
+</script>
+
 
 
 
