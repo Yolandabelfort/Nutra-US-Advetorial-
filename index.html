@@ -3010,6 +3010,14 @@ Not an official Manus doc nor endorsed by Manus. Content may contain inaccuracie
     			domain: window.location.host
   			}
 			})
-		</script></body>
-</html>
-
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const elements = document.querySelectorAll("body *");
+    elements.forEach(function (el) {
+      if (el.textContent.includes("Made with Manus")) {
+        el.style.display = "none";
+      }
+    });
+  });
+</script>
+</body>
