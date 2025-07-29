@@ -3016,15 +3016,17 @@ Not an official Manus doc nor endorsed by Manus. Content may contain inaccuracie
     elements.forEach(function (el) {
       if (el.textContent && el.textContent.includes("Made with Manus")) {
         el.style.display = "none";
+        console.log("Manus badge hidden:", el);
       }
     });
   }
 
-  // Run immediately after DOM loads
+  // Initial run
   document.addEventListener("DOMContentLoaded", hideManusBadge);
 
-  // Watch for dynamically injected content (like popups)
+  // Monitor for changes (badge injected after load)
   const observer = new MutationObserver(hideManusBadge);
   observer.observe(document.body, { childList: true, subtree: true });
 </script>
+
 
