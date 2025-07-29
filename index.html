@@ -3011,22 +3011,31 @@ Not an official Manus doc nor endorsed by Manus. Content may contain inaccuracie
   			}
 			})
 <script>
-  function hideManusBadge() {
-    const elements = document.querySelectorAll("body *");
-    elements.forEach(function (el) {
-      if (el.textContent && el.textContent.includes("Made with Manus")) {
-        el.style.display = "none";
-        console.log("Manus badge hidden:", el);
+  function removeManusBadge() {
+    const suspects = document.querySelectorAll("body *");
+
+    suspects.forEach(function (el) {
+      const text = el.textContent?.trim() || "";
+      const className = el.className?.toString() || "";
+
+      if (
+        text.includes("Made with Manus") ||
+        className.includes("manus") ||
+        className.includes("badge")
+      ) {
+        el.remove();
+        console.log("Removed Manus element:", el);
       }
     });
   }
 
-  // Initial run
-  document.addEventListener("DOMContentLoaded", hideManusBadge);
+  // Run on DOM load
+  document.addEventListener("DOMContentLoaded", removeManusBadge);
 
-  // Monitor for changes (badge injected after load)
-  const observer = new MutationObserver(hideManusBadge);
+  // Also observe future changes
+  const observer = new MutationObserver(removeManusBadge);
   observer.observe(document.body, { childList: true, subtree: true });
 </script>
+
 
 
