@@ -320,7 +320,7 @@
 
             <div class="video-container">
   <div style="position: relative; display: inline-block; width: 100%; max-width: 800px;">
-    <video id="mainVideo" controls width="100%" style="border-radius: 10px; object-fit: cover; aspect-ratio: 16/9;">
+    <video id="mainVideo" width="100%" style="border-radius: 10px; object-fit: cover; aspect-ratio: 16/9;" playsinline>
       <source src="eedae366-b1a5-4813-99a1-3aa87b67a266%20(online-video-cutter.com)%20(2).mp4" type="video/mp4">
       Your browser does not support the video tag.
     </video>
@@ -337,6 +337,33 @@
     </div>
   </div>
 </div>
+
+<script>
+  const video = document.getElementById('mainVideo');
+  const playBtn = document.getElementById('playButton');
+
+  video.removeAttribute("controls");
+  video.setAttribute("preload", "none");
+
+  playBtn.addEventListener("click", () => {
+    if (video.paused) {
+      video.play();
+      playBtn.style.display = "none";
+    } else {
+      video.pause();
+      playBtn.style.display = "flex";
+    }
+  });
+
+  video.addEventListener("pause", () => {
+    playBtn.style.display = "flex";
+  });
+
+  video.addEventListener("contextmenu", e => e.preventDefault());
+  video.addEventListener("volumechange", e => video.volume = 1);
+  video.addEventListener("fullscreenchange", e => document.exitFullscreen());
+</script>
+
 
 
 <script>
